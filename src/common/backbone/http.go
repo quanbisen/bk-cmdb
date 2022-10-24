@@ -13,6 +13,7 @@
 package backbone
 
 import (
+	"configcenter/src/common/http/signals"
 	"context"
 	"fmt"
 	"net"
@@ -21,7 +22,6 @@ import (
 	"os"
 	"os/signal"
 	"strconv"
-	"syscall"
 	"time"
 
 	"configcenter/src/common/blog"
@@ -43,7 +43,7 @@ func ListenAndServe(c Server, svcDisc ServiceRegisterInterface, cancel context.C
 		Handler: handler,
 	}
 	exit := make(chan os.Signal, 1)
-	signal.Notify(exit, syscall.SIGTERM)
+	signal.Notify(exit, signals.ShutdownSignals...)
 	go func() {
 		for {
 			select {

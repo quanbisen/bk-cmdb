@@ -16,7 +16,7 @@ pushd $(pwd) > /dev/null
             if [ -f $target_makefile_path ] && [ "$flag" = false ];then
                 pushd $(pwd) > /dev/null
                     cd $(dirname $target_makefile_path)
-		    echo "enter directory: " $(pwd)
+		                echo "enter directory: " $(pwd)
                     if [ "$1" = "debug" ];then
                         export ISDEBUG=true
                     fi

@@ -40,6 +40,7 @@
 
 推荐版本下载： [ZooKeeper 3.4.12](https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.12/zookeeper-3.4.12.tar.gz)
 
+认证（zkCli）：`addauth digest cc:3.0#bkcc` 
 ### 2. 部署Redis
 
 请参看官方资料 [Redis](https://redis.io/download)
@@ -229,30 +230,30 @@ drwxr-xr-x 7 root root  4096 Jun 18 10:33 web
 
 **init.py 参数详解：**
 
-| ZooKeeper地址       | 用途说明                                                                                                                                                                             | 必填                    | 默认值                  |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- | ----------------------- |
-| --discovery         | 服务发现组件，ZooKeeper 服务地址                                                                                                                                                     | 是                      | 无                      |
-| --database          | 数据库名字                                                                                                                                                                           | mongodb 中数据库名      | 否                      | cmdb |
-| --redis_ip          | Redis监听的IP                                                                                                                                                                        | 是                      | 无                      |
-| --redis_port        | Redis监听的端口                                                                                                                                                                      | 否                      | 6379                    |
-| --redis_pass        | Redis登陆密码                                                                                                                                                                        | 是                      | 无                      |
-| --mongo_ip          | MongoDB服务监听的IP                                                                                                                                                                  | 是                      | 无                      |
-| --mongo_port        | MongoDB端口                                                                                                                                                                          | 否                      | 27017                   |
-| --mongo_user        | MongoDB中CMDB数据库用户名                                                                                                                                                            | 是                      | 无                      |
-| --mongo_pass        | MongoDB中CMDB数据库用户名密码                                                                                                                                                        | 是                      | 无                      |
+| ZooKeeper地址       | 用途说明                                                                                                                      | 必填                    | 默认值                  |
+| ------------------- |---------------------------------------------------------------------------------------------------------------------------| ----------------------- | ----------------------- |
+| --discovery         | 服务发现组件，ZooKeeper 服务地址                                                                                                     | 是                      | 无                      |
+| --database          | 数据库名字                                                                                                                     | mongodb 中数据库名      | 否                      | cmdb |
+| --redis_ip          | Redis监听的IP                                                                                                                | 是                      | 无                      |
+| --redis_port        | Redis监听的端口                                                                                                                | 否                      | 6379                    |
+| --redis_pass        | Redis登陆密码                                                                                                                 | 是                      | 无                      |
+| --mongo_ip          | MongoDB服务监听的IP                                                                                                            | 是                      | 无                      |
+| --mongo_port        | MongoDB端口                                                                                                                 | 否                      | 27017                   |
+| --mongo_user        | MongoDB中CMDB数据库用户名                                                                                                        | 是                      | 无                      |
+| --mongo_pass        | MongoDB中CMDB数据库用户名密码                                                                                                      | 是                      | 无                      |
 | --blueking_cmdb_url | 该值表示部署完成后,输入到浏览器中访问的cmdb 网址, 格式: http://xx.xxx.com:80, 用户自定义填写;在没有配置 DNS 解析的情况下, 填写服务器的 IP:PORT。端口为当前cmdb_webserver监听的端口。 | 是                      | 无                      |
-| --blueking_paas_url | 蓝鲸PAAS 平台的地址，对于独立部署的CC版本可以不配置                                                                                                                                  | 否                      | 无                      |
-| --listen_port       | cmdb_webserver服务监听的端口，默认是8083                                                                                                                                             | 是                      | 8083                    |
-| --full_text_search  | 全文检索功能开关(取值：off/on)，默认是off，开启是on                                                                                                                                  | 否                      | off                     |
-| --es_url            | elasticsearch服务监听url，默认是http://127.0.0.1:9200                                                                                                                                | 否                      | http://127.0.0.1:9200   |
-| --auth_scheme       | 权限模式，web页面使用，可选值: internal, iam                                                                                                                                         | 否                      | internal                |
-| --auth_enabled      | 是否采用蓝鲸权限中心鉴权                                                                                                                                                             | 否                      | false                   |
-| --auth_address      | 蓝鲸权限中心地址                                                                                                                                                                     | auth_enabled 为真时必填 | https://iam.domain.com/ |
-| --auth_app_code     | cmdb项目在蓝鲸权限中心的应用编码                                                                                                                                                     | auth_enabled 为真时必填 | bk_cmdb                 |
-| --auth_app_secret   | cmdb项目在蓝鲸权限中心的应用密钥                                                                                                                                                     | auth_enabled 为真时必填 | xxxxxxx                 |
-| --log_level         | 日志级别0-9, 9日志最详细                                                                                                                                                             | 否                      | 3                       |
-| --register_ip       | 进程注册到zookeeper上的IP地址，可以是域名                                                                                                                                            | 否                      | 无                      |
-| --user_info         | 登陆 web 页面的账号密码                                                                                                                                                              | 否                      | 无                      |
+| --blueking_paas_url | 蓝鲸PAAS 平台的地址，对于独立部署的CC版本可以不配置                                                                                             | 否                      | 无                      |
+| --listen_port       | cmdb_webserver服务监听的端口，默认是8083                                                                                             | 是                      | 8083                    |
+| --full_text_search  | 全文检索功能开关(取值：off/on)，默认是off，开启是on                                                                                          | 否                      | off                     |
+| --es_url            | elasticsearch服务监听url，默认是http://127.0.0.1:9200                                                                             | 否                      | http://127.0.0.1:9200   |
+| --auth_scheme       | 权限模式，web页面使用，可选值: internal, iam                                                                                           | 否                      | internal                |
+| --auth_enabled      | 是否采用蓝鲸权限中心鉴权                                                                                                              | 否                      | false                   |
+| --auth_address      | 蓝鲸权限中心地址                                                                                                                  | auth_enabled 为真时必填 | https://iam.domain.com/ |
+| --auth_app_code     | cmdb项目在蓝鲸权限中心的应用编码                                                                                                        | auth_enabled 为真时必填 | bk_cmdb                 |
+| --auth_app_secret   | cmdb项目在蓝鲸权限中心的应用密钥                                                                                                        | auth_enabled 为真时必填 | xxxxxxx                 |
+| --log_level         | 日志级别0-9, 9日志最详细                                                                                                           | 否                      | 3                       |
+| --register_ip       | 进程注册到zookeeper上的IP地址，可以是域名（该地址会被服务发现拼接为s.Scheme, s.RegisterIP, s.Port进行服务调用）                                              | 否                      | 无                      |
+| --user_info         | 登陆 web 页面的账号密码                                                                                                            | 否                      | 无                      |
 
 **注:init.py 执行成功后会自动生成cmdb各服务进程所需要的配置。**
 

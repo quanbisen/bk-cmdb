@@ -12,7 +12,7 @@
 ![avatar](../../../docs/resource/img/datacollection/dataflow.png)
 
 * `数据源(Origin)`: 采集的数据节点采集器会将数据发送到指定的外部Redis队列, DataCollection订阅指定Topics接收采集数据;
-* `数据分片(Sharding)`: 基于Redis队列特性，订阅相同Topics的消费节点(DataCollection)均会受到同一个消息，故此在分布式模式下基于一致性Hash进行数据分片;
+* `数据分片(Sharding)`: 基于Redis队列特性，订阅相同Topics的消费节点(DataCollection)均会收到同一个消息，故此在分布式模式下基于一致性Hash进行数据分片;
 * `集群(Cluster)`：DataCollection集群，节点之间基于Hash规则分割数据，节点基于ZK做服务发现，动态更新HashRing，即集群支持动态扩缩容;
 * `数据存储`: 数据经由DataCollection处理后统一存储到CC Redis或CC Database;
 

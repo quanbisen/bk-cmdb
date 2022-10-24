@@ -824,3 +824,6 @@ url("fonts/iconcool.eot?#iefix") format("embedded-opentype");
 .icon-cc-script-logo:before {
 	content: "\e3b6";
 }
+.icon-cc-language-solid:before {
+	content: "\e3b5"
+}

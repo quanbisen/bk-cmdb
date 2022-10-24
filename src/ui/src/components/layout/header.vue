@@ -14,7 +14,7 @@
   <header class="header-layout" v-test-id.global="'header'">
     <div class="logo">
       <router-link class="logo-link" to="/index">
-        {{$t('蓝鲸配置平台')}}
+        {{$t('配置平台')}}
       </router-link>
     </div>
     <nav class="header-nav" v-test-id.global="'headerNav'">
@@ -34,15 +34,18 @@
         trigger="click"
         animation="fade"
         placement="bottom-end"
+        ref="languagePopOver"
         :arrow="false"
         :tippy-options="{
-          animateFill: false
+          animateFill: true
         }">
-        <i class="question-icon icon-cc-default"></i>
+        <i class="question-icon icon-cc-language-solid"></i>
         <template slot="content">
-          <a class="question-link" target="_blank" :href="helpDocUrl">{{$t('产品文档')}}</a>
-          <a class="question-link" target="_blank" href="https://bk.tencent.com/s-mart/community">{{$t('问题反馈')}}</a>
-          <a class="question-link" target="_blank" href="https://github.com/Tencent/bk-cmdb">{{$t('开源社区')}}</a>
+          <a :class=" language === 'zh_CN' ? 'question-link question-link-hover' : 'question-link' "
+            href="javascript:void(0)"
+            @click="changeLanguage('zh_CN')">中文 (zh_CN)</a>
+          <a :class=" language === 'en' ? 'question-link question-link-hover' : 'question-link' "
+            href="javascript:void(0)" @click="changeLanguage('en')">英文 (en)</a>
         </template>
       </bk-popover>
       <bk-popover class="info-item"
@@ -52,7 +55,7 @@
         placement="bottom-end"
         :arrow="false"
         :tippy-options="{
-          animateFill: false
+          animateFill: true
         }">
         <span class="info-user">
           <span class="user-name">{{userName}}</span>
@@ -84,13 +87,15 @@
     getBizSetIdFromStorage,
     getBizSetRecentlyUsed
   } from '@/utils/business-set-helper.js'
+  import Cookies from 'js-cookie'
+  import store from '@/store'
 
   export default {
     data() {
       return {}
     },
     computed: {
-      ...mapGetters(['userName']),
+      ...mapGetters(['userName', 'language']),
       ...mapGetters('objectBiz', ['bizId']),
       helpDocUrl() {
         return this.$Site.helpDocUrl || 'http://docs.bk.tencent.com/product_white_paper/cmdb/'
@@ -111,6 +116,8 @@
         const { matched: [topRoute] } = this.$route
         return topRoute?.name === MENU_BUSINESS_SET || topRoute?.name === MENU_BUSINESS
       }
+    },
+    mounted() {
     },
     methods: {
       isLinkActive(nav) {
@@ -140,6 +147,12 @@
         }).then((data) => {
           window.location.href = data.url
         })
+      },
+      changeLanguage(lang) {
+        this.$refs.languagePopOver.hideHandler()
+        Cookies.set('blueking_language', lang)
+        store.dispatch('updateLanguage', lang)
+        window.location.reload()
       }
     }
   }
@@ -214,6 +227,8 @@
         .question-icon {
             font-size: 16px;
             color: #DCDEE5;
+            width: 20px;
+            height: 16px;
             &:hover {
                 color: #fff;
             }
@@ -245,6 +260,10 @@
             background-color: #f1f7ff;
             color: #3a84ff;
         }
+    }
+    .question-link-hover {
+      background-color: #f1f7ff;
+      color: #3a84ff;
     }
 </style>
 

@@ -77,6 +77,9 @@ const actions = {
   getBlueKingEditStatus(context, { config }) {
     return $http.post('system/config/user_config/blueking_modify', {}, config)
   },
+  updateLanguage({ commit }, language) {
+    commit('setLanguage', language)
+  },
 }
 
 const mutations = {
@@ -118,6 +121,9 @@ const mutations = {
   },
   setScrollerState(state, scrollerState) {
     Object.assign(state.scrollerState, scrollerState)
+  },
+  setLanguage(state, language) {
+    state.language = language
   },
 }
 

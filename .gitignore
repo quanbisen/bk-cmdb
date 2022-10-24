@@ -12,3 +12,8 @@ src/web*/cmdb_*
 
 .DS_Store
 .vscode
+.idea
+src/scene_server/admin_server/conf/
+src/web_server/logs/
+src/scene_server/*/logs
+/pid

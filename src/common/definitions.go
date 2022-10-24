@@ -803,7 +803,7 @@ const DefaultCloudName string = "default area"
 const DefaultInstName string = "实例名"
 
 // BKAppName the default app name
-const BKAppName string = "蓝鲸"
+const BKAppName string = "爱加密"
 
 // BKNetwork TODO
 // bk_classification_id value
